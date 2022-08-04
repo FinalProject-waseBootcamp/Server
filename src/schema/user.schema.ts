@@ -21,10 +21,6 @@ export class User {
 export const UserSchema = SchemaFactory.createForClass(User);
 
 
-
-
-
-
 // export const UserSchema=new mongoose.Schema({
 //   firstName: {type: String, required: true },
 //   lastName: {type: String, required: true },
