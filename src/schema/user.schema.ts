@@ -6,7 +6,7 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
   constructor() {
-    console.log('construct');
+    console.log('user construct');
   }
   @Prop({ required: true })
   firstName: string;
