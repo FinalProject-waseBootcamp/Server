@@ -1,4 +1,5 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
+import { debug } from 'console';
 import { Request, Response } from 'express';
 import * as firebase from 'firebase-admin';
 import * as serviceAccount from './credential.json';
@@ -29,6 +30,8 @@ export class AuthMiddleware implements NestMiddleware {
     }
 
     use(req: Request, res: Response, next: Function) {
+    console.log("nm");
+    
         const token = req.headers.authorization;
         if (token != null && token != '') {
             this.defaultApp.auth().verifyIdToken(token.replace('Bearer ', ''))
@@ -42,7 +45,8 @@ export class AuthMiddleware implements NestMiddleware {
                     console.error(error);
                     this.accessDenied(req.url, res);
                 });
-        } else {
+        } else 
+        {
             console.log("no token provided")
             this.accessDenied(req.url, res);
         }
