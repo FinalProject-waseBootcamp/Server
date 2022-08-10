@@ -12,14 +12,15 @@ import { SystemModule } from './system/system.module';
     MongooseModule.forRoot('mongodb://localhost:27017/nest-db'),
     // ConfigModule.load(path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}')),
     UserModule,
-    AuthModule,
+    // AuthModule,
     SystemModule,
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes({
-      path: '*', method: RequestMethod.ALL
-    });
-  }
-}
+export class AppModule{}
+// export class AppModule implements NestModule {
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer.apply(AuthMiddleware).forRoutes({
+  //     path: '*', method: RequestMethod.ALL
+  //   });
+  // }
+// }

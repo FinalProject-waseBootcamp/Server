@@ -7,7 +7,8 @@ export class SystemController {
     constructor(private readonly systemService: SystemService) { }
     @Post()
   async create(@Body() systemrDto: System) {
-    await this.systemService.create(systemrDto);
+    const system = await this.systemService.create(systemrDto);
+    return system;
   }
   @Get()
   async findOne(@Param('id') id: string) {

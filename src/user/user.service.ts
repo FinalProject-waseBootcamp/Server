@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../dto/user.dto';
-import * as admin from 'firebase-admin';
+// import * as admin from 'firebase-admin';
 
 @Injectable()
 export class UserService {
