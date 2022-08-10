@@ -8,30 +8,29 @@ export class SystemService {
   constructor(
     @InjectModel('System')
     private readonly systemModel: Model<System>,
-  ) { }
+  ) {}
 
   async create(systemDto: System) {
     const createdSystem = await this.systemModel.create(systemDto);
-    console.log("created system in service"+createdSystem);
+    console.log('created system in service' + createdSystem);
     return createdSystem;
   }
 
   async findByAdminId(id: string): Promise<System[]> {
     {
       try {
-        const systems = await this.systemModel.find({adminId:id}).exec();
+        const systems = await this.systemModel.find({ adminId: id }).exec();
         return systems;
       } catch (error) {
         throw new NotFoundException('not found');
       }
     }
   }
-  async delete(id: string) {
-    const deletedSystem  = await this.systemModel
-      .findByIdAndRemove({ _id: id })
 
+  async delete(id: string) {
+    const deletedSystem = await this.systemModel
+      .findByIdAndRemove({ _id: id })
       .exec();
     return deletedSystem;
   }
 }
-
