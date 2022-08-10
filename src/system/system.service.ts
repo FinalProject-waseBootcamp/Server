@@ -12,6 +12,7 @@ export class SystemService {
 
   async create(systemDto: System) {
     const createdSystem = await this.systemModel.create(systemDto);
+    console.log("created system in service"+createdSystem);
     return createdSystem;
   }
   async findOne(id: string): Promise<System> {

@@ -8,8 +8,8 @@ export class System {
     console.log('system construct');
   }
 
-  @Prop({ required: true })
-  uid: string;
+  // @Prop()
+  // uid: string;
 
   @Prop({ required: true })
   name: string;
