@@ -16,11 +16,11 @@ export class SystemService {
     return createdSystem;
   }
 
-  async findOne(id: string): Promise<System[]> {
+  async findByAdminId(id: string): Promise<System[]> {
     {
       try {
-        const system = await this.systemModel.find({_id:id}).exec();
-        return system;
+        const systems = await this.systemModel.find({_id:id}).exec();
+        return systems;
       } catch (error) {
         throw new NotFoundException('not found');
       }
