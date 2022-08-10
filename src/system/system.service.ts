@@ -16,10 +16,10 @@ export class SystemService {
     return createdSystem;
   }
 
-  async findOne(id: string): Promise<System> {
+  async findOne(id: string): Promise<System[]> {
     {
       try {
-        const system = await this.systemModel.findById(id).exec();
+        const system = await this.systemModel.find({_id:id}).exec();
         return system;
       } catch (error) {
         throw new NotFoundException('not found');
@@ -29,7 +29,7 @@ export class SystemService {
   async delete(id: string) {
     const deletedSystem  = await this.systemModel
       .findByIdAndRemove({ _id: id })
-      
+
       .exec();
     return deletedSystem;
   }
