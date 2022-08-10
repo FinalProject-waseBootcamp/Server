@@ -21,7 +21,6 @@ export class UserController {
   }
   @Get()
   async getAllUser() {
-    
     const user = await this.userService.findAll();
     return user.map((u) => ({
       id: u.id,
