@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { log } from 'console';
 import { System } from 'src/dto/system.dto';
 import { SystemService } from './system.service';
@@ -13,9 +13,14 @@ export class SystemController {
     return system;
   }
 
+  @Get()
+  async getByAdminId(@Query() query: { adminId: string }) {
+    return this.systemService.findByAdminId(query.adminId);
+  }
+
   @Get(':id')
-  async findByAdminId(@Param('id') id: string) {
-    return this.systemService.findByAdminId(id);
+  async getByUid(@Param('id') id: string) {
+    return this.systemService.findByUid(id);
   }
 
   @Delete(':id')

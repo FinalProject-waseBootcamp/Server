@@ -27,6 +27,15 @@ export class SystemService {
     }
   }
 
+  async findByUid(uid: string): Promise<System> {
+    try {
+      const system = await this.systemModel.findById({uid}).exec();
+      return system;
+    } catch (error) {
+      throw new NotFoundException('not found');
+    }
+  }
+
   async delete(id: string) {
     const deletedSystem = await this.systemModel
       .findByIdAndRemove({ _id: id })
