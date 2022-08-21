@@ -7,4 +7,6 @@ export interface System extends mongoose.Document {
   topic: string;
   description: string;
   communicationDetails: string;
+  imgUrl : string;
+  siteUrl: string;
 }
