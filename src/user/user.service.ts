@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../dto/user.dto';
-// import * as admin from 'firebase-admin';
+import * as admin from 'firebase-admin';
 
 @Injectable()
 export class UserService {
@@ -12,7 +12,15 @@ export class UserService {
   ) {}
 
   async create(userDto: User) {
+    const { firstName,lastName, password, email, role } = userDto;
+    const displayName=firstName+''+lastName;
     const createdUser = await this.userModel.create(userDto);
+    const { uid } = await admin.auth().createUser({
+      displayName,
+      password,
+      email
+  })
+  await admin.auth().setCustomUserClaims(uid, { role })
     return createdUser;
   }
 

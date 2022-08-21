@@ -29,8 +29,27 @@ export class SystemService {
 
   async findByUid(uid: string): Promise<System> {
     try {
-      const system = await this.systemModel.findById({uid}).exec();
+      const system = await this.systemModel.findById(uid).exec();
       return system;
+    } catch (error) {
+      throw new NotFoundException('not found');
+    }
+  }
+
+  async updateSystem(uid: string, system: System): Promise<System> {
+    try {
+      console.log('service: ',system);
+      const updatedSystem = await this.systemModel.findByIdAndUpdate(uid, system,function (err, docs) {
+        if (err){
+            console.log(err)
+        }
+        else{
+            console.log("Updated User : ", docs);
+            return docs;
+        }
+    }).exec();
+      console.log('controller update: '+updatedSystem);
+      return updatedSystem;
     } catch (error) {
       throw new NotFoundException('not found');
     }
