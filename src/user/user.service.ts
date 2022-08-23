@@ -13,19 +13,21 @@ export class UserService {
     private readonly userModel: Model<User>,
   ) {}
 
-  async create(userDto: User) {
-    if (isAuthenticated && isAuthorized({ hasRole: ['admin', 'manager'] })) {
-      const { firstName, lastName, password, email, role } = userDto;
-      const displayName = firstName + '' + lastName;
+  async create(userDto: User,role:string) {
+    // if (isAuthenticated && isAuthorized({ hasRole: ['admin', 'manager'] })) {
       const createdUser = await this.userModel.create(userDto);
+      console.log("createdUser",createdUser);
+      const { firstName, lastName, password, email } = userDto;
+      const displayName = firstName + ' ' + lastName;
       const { uid } = await admin.auth().createUser({
         displayName,
         password,
         email,
       });
-      await admin.auth().setCustomUserClaims(uid, { role });
+      const res=await admin.auth().setCustomUserClaims(uid, { role });
+      console.log(res);
       return createdUser;
-    }
+    // }
   }
 
   async findAll() {
