@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { SystemModule } from './system/system.module';
+import { MarkerModule } from './marker/marker.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { SystemModule } from './system/system.module';
     UserModule,
     // AuthModule,
     SystemModule,
-  ],
+    MarkerModule,
+  ]
 })
 export class AppModule{}
 // export class AppModule implements NestModule {
