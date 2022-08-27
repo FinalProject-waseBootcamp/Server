@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 
 @Schema()
@@ -10,10 +10,10 @@ export class Managers {
 
 
   @Prop({ required: true })
-  user_id: string;
+  user_id:  mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })
-  systemId: string;
+  systemId:  mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })
   active: boolean;

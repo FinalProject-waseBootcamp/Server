@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 
 @Schema()
@@ -11,7 +11,7 @@ export class Marker {
   //   @Prop({ required: true })
   //   uid: string;
   @Prop({ required: true })
-  manager_id: string;
+  manager_id:  mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })
   systemId: string;
@@ -39,7 +39,7 @@ export class Marker {
 
   @Prop({ required: true })
   email: string;
-  
+
   @Prop({ required: true })
   phon: string;
 }

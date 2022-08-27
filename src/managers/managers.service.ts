@@ -46,14 +46,14 @@ export class ManagersService {
       console.log('updated manager: '+updatedmanager);
       return updatedmanager;
     } catch (error) {
-      throw new NotFoundException('update marker service error');
+      throw new NotFoundException('update manager service error');
     }
   }
 
   async delete(id: string) {
-    const deletedMarker = await this.managersModel
+    const deletedManager = await this.managersModel
       .findByIdAndRemove({ _id: id })
       .exec();
-    return deletedMarker;
+    return deletedManager;
   }
 }
