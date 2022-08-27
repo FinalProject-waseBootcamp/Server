@@ -17,7 +17,7 @@ export class MarkerController {
 
   @Post()
   async create(@Body() markerDto: Marker) {
-    await this.markerService.create(markerDto);
+    return await this.markerService.create(markerDto);
   }
   @Get()
   async getAllMarkers() {
