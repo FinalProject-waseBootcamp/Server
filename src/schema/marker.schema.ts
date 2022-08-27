@@ -8,13 +8,14 @@ export class Marker {
     console.log('marker construct');
   }
 
-  //   @Prop({ required: true })
-  //   uid: string;
   @Prop({ required: true })
   manager_id:  mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })
   systemId: string;
+
+  @Prop({ required: true })
+  name: string;
 
   @Prop({ required: true })
   description: string;
@@ -28,20 +29,17 @@ export class Marker {
   @Prop({ required: true })
   address: string;
 
-  @Prop({ required: true })
-  color?: string;
+  @Prop()
+  color?:string;
 
-  @Prop({ required: true })
-  name: string;
+  @Prop()
+  notes?: string;
 
+  @Prop()
+  email?: string;
+  
   @Prop({ required: true })
-  notes: string;
-
-  @Prop({ required: true })
-  email: string;
-
-  @Prop({ required: true })
-  phon: string;
+  phone?: string;
 }
 
 export const MarkerSchema = SchemaFactory.createForClass(Marker);
