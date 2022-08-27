@@ -8,30 +8,41 @@ export class Marker {
     console.log('marker construct');
   }
 
-//   @Prop({ required: true })
-//   uid: string;
+  //   @Prop({ required: true })
+  //   uid: string;
 
+  @Prop({ required: true })
+  manager_id: string;
 
   @Prop({ required: true })
   systemId: string;
 
   @Prop({ required: true })
-  name:string;
+  name: string;
 
   @Prop({ required: true })
-  description:string;
+  description: string;
 
   @Prop({ required: true })
-  lat:number;
+  lat: number;
 
   @Prop({ required: true })
-  lng:number;
+  lng: number;
 
   @Prop({ required: true })
-  address:string;
+  address: string;
 
   @Prop()
   color?:string;
+
+  @Prop()
+  notes?: string;
+
+  @Prop()
+  email?: string;
+  
+  @Prop({ required: true })
+  phone?: string;
 }
 
 export const MarkerSchema = SchemaFactory.createForClass(Marker);

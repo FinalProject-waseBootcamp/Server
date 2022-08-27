@@ -1,19 +1,10 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
-import { MarkerService } from './marker.service';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, } from '@nestjs/common';
 import { Marker } from 'src/dto/marker.dto';
+import { MarkerService } from './marker.service';
 
 @Controller('marker')
 export class MarkerController {
-  constructor(private readonly markerService: MarkerService) {}
+    constructor(private readonly markerService: MarkerService) { }
 
   @Post()
   async create(@Body() markerDto: Marker) {
