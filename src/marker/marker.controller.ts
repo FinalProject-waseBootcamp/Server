@@ -17,7 +17,7 @@ export class MarkerController {
     return markerList;
   }
   @Get()
-  async getBySystemId(@Query() query: { systemId: mongoose.Schema.Types.ObjectId }) {
+  async getBySystemId(@Query() query: { systemId: string }) {
     return this.markerService.findBySystemId(query.systemId);
   }
   @Get(':id')

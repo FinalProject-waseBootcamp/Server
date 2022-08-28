@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export interface Marker extends mongoose.Document {
     managerId: string,
-    systemId:  mongoose.Schema.Types.ObjectId,
+    systemId:  string,
     lat:number,
     lng:number,
     name:string ,

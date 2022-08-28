@@ -23,7 +23,7 @@ export class System {
   description: string;
 
   @Prop({ required: true })
-  adminId:  mongoose.Schema.Types.ObjectId;
+  adminId:  string;
 
   @Prop({ required: true })
   communicationDetails: string;

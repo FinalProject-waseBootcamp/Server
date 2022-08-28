@@ -30,15 +30,13 @@ export class MarkerService {
       throw new NotFoundException('marker not found');
     }
   }
-  async findBySystemId(id: mongoose.Schema.Types.ObjectId): Promise<Marker[]> {
-    {
+  async findBySystemId(id: string): Promise<Marker[]> {
       try {
         const systems = await this.markerModel.find({ systemId: id }).exec();
         return systems;
       } catch (error) {
         throw new NotFoundException('not found');
       }
-    }
   }
   async updateMarker(uid: mongoose.Schema.Types.ObjectId, marker: Marker): Promise<Marker> {
     try {

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export interface System extends mongoose.Document {
   uid: string|undefined ;
-  adminId:  mongoose.Schema.Types.ObjectId;
+  adminId:  string;
   name: string;
   topic: string;
   description: string;
