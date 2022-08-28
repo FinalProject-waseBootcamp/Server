@@ -29,6 +29,9 @@ export class Marker {
   @Prop({ required: true })
   address: string;
 
+  @Prop({ required: true })
+  city: string;
+
   @Prop()
   color?:string;
 
