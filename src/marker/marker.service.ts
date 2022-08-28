@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import {Marker} from 'src/dto/marker.dto';
 import * as admin from 'firebase-admin';
 
@@ -22,7 +22,7 @@ export class MarkerService {
     return markers;
   }
 
-  async findOne(id: string): Promise<Marker> {
+  async findOne(id: mongoose.Schema.Types.ObjectId): Promise<Marker> {
     try {
       const marker = await this.markerModel.findById(id).exec();
       return marker;
@@ -30,7 +30,7 @@ export class MarkerService {
       throw new NotFoundException('marker not found');
     }
   }
-  async findBySystemId(id: string): Promise<Marker[]> {
+  async findBySystemId(id: mongoose.Schema.Types.ObjectId): Promise<Marker[]> {
     {
       try {
         const systems = await this.markerModel.find({ systemId: id }).exec();
@@ -40,7 +40,7 @@ export class MarkerService {
       }
     }
   }
-  async updateMarker(uid: string, marker: Marker): Promise<Marker> {
+  async updateMarker(uid: mongoose.Schema.Types.ObjectId, marker: Marker): Promise<Marker> {
     try {
       console.log('marker: ',marker);
       const updatedMarker = await this.markerModel.findByIdAndUpdate(uid, marker).exec();
@@ -51,7 +51,7 @@ export class MarkerService {
     }
   }
 
-  async delete(id: string) {
+  async delete(id: mongoose.Schema.Types.ObjectId) {
     const deletedMarker = await this.markerModel
       .findByIdAndRemove({ _id: id })
       .exec();

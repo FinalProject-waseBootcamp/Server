@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 
 @Schema()
@@ -8,11 +8,8 @@ export class Marker {
     console.log('marker construct');
   }
 
-  //   @Prop({ required: true })
-  //   uid: string;
-
   @Prop({ required: true })
-  managerId: string;
+  manager_id:  mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })
   systemId: string;

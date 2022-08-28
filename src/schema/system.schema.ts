@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 
 export type UserDocument = System & Document;
 
@@ -22,7 +23,7 @@ export class System {
   description: string;
 
   @Prop({ required: true })
-  adminId: string;
+  adminId:  mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })
   communicationDetails: string;

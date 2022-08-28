@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import {Managers} from 'src/dto/managers.dto';
 
 @Injectable()
@@ -21,39 +21,31 @@ export class ManagersService {
     return markers;
   }
 
-  async findOne(id: string): Promise<Managers> {
-    try {
-      const manager = await this.managersModel.findById(id).exec();
-      return manager;
-    } catch (error) {
-      throw new NotFoundException('not found', error);
-    }
-  }
-  async findBySystemId(id: string): Promise<Managers[]> {
+  async findByIds(system_id:mongoose.Schema.Types.ObjectId,user_id: mongoose.Schema.Types.ObjectId): Promise<Managers[]> {
     {
       try {
-        const systems = await this.managersModel.find({ systemId: id }).exec();
-        return systems;
+        const manager = await this.managersModel.find({"system_id":system_id,"user_id":user_id}).exec();
+         return manager;
       } catch (error) {
         throw new NotFoundException('not found',error);
       }
     }
   }
-  async updateManager(uid: string, manager: Managers): Promise<Managers> {
+  async updateManager(uid: mongoose.Schema.Types.ObjectId, manager: Managers): Promise<Managers> {
     try {
       console.log('manager: ',manager);
       const updatedmanager = await this.managersModel.findByIdAndUpdate(uid, manager).exec();
       console.log('updated manager: '+updatedmanager);
       return updatedmanager;
     } catch (error) {
-      throw new NotFoundException('update marker service error');
+      throw new NotFoundException('update manager service error');
     }
   }
 
-  async delete(id: string) {
-    const deletedMarker = await this.managersModel
+  async delete(id: mongoose.Schema.Types.ObjectId) {
+    const deletedManager = await this.managersModel
       .findByIdAndRemove({ _id: id })
       .exec();
-    return deletedMarker;
+    return deletedManager;
   }
 }
