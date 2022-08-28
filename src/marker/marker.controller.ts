@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, } from '@nestjs/common';
+import mongoose from 'mongoose';
 import { Marker } from 'src/dto/marker.dto';
 import { MarkerService } from './marker.service';
 
@@ -16,19 +17,19 @@ export class MarkerController {
     return markerList;
   }
   @Get()
-  async getBySystemId(@Query() query: { systemId: string }) {
+  async getBySystemId(@Query() query: { systemId: mongoose.Schema.Types.ObjectId }) {
     return this.markerService.findBySystemId(query.systemId);
   }
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: mongoose.Schema.Types.ObjectId) {
     return this.markerService.findOne(id);
   }
   @Put(':id')
-  async update(@Param('id') id: string, @Body('marker') marker: Marker) {
+  async update(@Param('id') id: mongoose.Schema.Types.ObjectId, @Body('marker') marker: Marker) {
     return this.markerService.updateMarker(id, marker);
   }
   @Delete(':id')
-  async delete(@Param('id') id: string) {
+  async delete(@Param('id') id: mongoose.Schema.Types.ObjectId) {
     return this.markerService.delete(id);
   }
 }
