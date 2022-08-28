@@ -12,7 +12,7 @@ export class Marker {
   //   uid: string;
 
   @Prop({ required: true })
-  manager_id: string;
+  managerId: string;
 
   @Prop({ required: true })
   systemId: string;
