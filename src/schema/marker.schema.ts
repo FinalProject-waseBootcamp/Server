@@ -9,7 +9,7 @@ export class Marker {
   }
 
   @Prop({ required: true })
-  manager_id:  mongoose.Schema.Types.ObjectId;
+  managerId:  string;
 
   @Prop({ required: true })
   systemId: string;

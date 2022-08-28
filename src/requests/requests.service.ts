@@ -20,8 +20,11 @@ export class RequestsService {
     const markers = await this.RequestsModel.find().exec();
     return markers;
   }
-
-  async updateRequests(uid: mongoose.Schema.Types.ObjectId, requests: Requests): Promise<Requests> {
+  async getRequestsById(systemId: string) {
+    const markers = await this.RequestsModel.findById(systemId).exec();
+    return markers;
+  }
+  async updateRequests(uid: string, requests: Requests): Promise<Requests> {
     try {
       console.log('requests: ',requests);
       const updatedrequests = await this.RequestsModel.findByIdAndUpdate(uid, requests).exec();
@@ -32,7 +35,7 @@ export class RequestsService {
     }
   }
 
-  async delete(id: mongoose.Schema.Types.ObjectId) {
+  async delete(id: string) {
     const deletedRequests = await this.RequestsModel
       .findByIdAndRemove({ _id: id })
       .exec();

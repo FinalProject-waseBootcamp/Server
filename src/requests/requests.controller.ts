@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, } from '@nestjs/common';
 import { RequestsService } from './requests.service';
 import { Requests } from 'src/dto/requests.dto';
-import mongoose from 'mongoose';
 
 @Controller('requests')
 export class RequestsController {
@@ -16,13 +15,18 @@ export class RequestsController {
     const markerList = await this.requestsService.findAll();
     return markerList;
   }
+  @Get(':id')
+  async getRequestsById(@Param('id') id: string) {
+    const markerList = await this.requestsService.getRequestsById(id);
+    return markerList;
+  }
 
   @Put(':id')
-  async update(@Param('id') id: mongoose.Schema.Types.ObjectId, @Body('requests') request: Requests) {
+  async update(@Param('id') id: string, @Body('requests') request: Requests) {
     return this.requestsService.updateRequests(id, request);
   }
   @Delete(':id')
-  async delete(@Param('id') id: mongoose.Schema.Types.ObjectId) {
+  async delete(@Param('id') id: string) {
     return this.requestsService.delete(id);
   }
 }
