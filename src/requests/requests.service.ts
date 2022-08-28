@@ -17,12 +17,12 @@ export class RequestsService {
   }
 
   async findAll() {
-    const markers = await this.RequestsModel.find().exec();
-    return markers;
+    const requests = await this.RequestsModel.find().exec();
+    return requests;
   }
   async getRequestsById(systemId: string) {
-    const markers = await this.RequestsModel.findById(systemId).exec();
-    return markers;
+    const requests = await this.RequestsModel.findById(systemId).exec();
+    return requests;
   }
   async updateRequests(uid: string, requests: Requests): Promise<Requests> {
     try {
@@ -31,7 +31,7 @@ export class RequestsService {
       console.log('updated requests: '+updatedrequests);
       return updatedrequests;
     } catch (error) {
-      throw new NotFoundException('update marker service error');
+      throw new NotFoundException('update request service error');
     }
   }
 
