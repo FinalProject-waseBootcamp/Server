@@ -6,7 +6,7 @@ import {Requests} from 'src/dto/requests.dto';
 @Injectable()
 export class RequestsService {
   constructor(
-    @InjectModel('Requests')
+    @InjectModel('Request')
       private readonly RequestsModel: Model<Requests>,
       ) {}
 
@@ -17,19 +17,19 @@ export class RequestsService {
   }
 
   async findAll() {
-    const markers = await this.RequestsModel.find().exec();
-    return markers;
+    const requests = await this.RequestsModel.find().exec();
+    return requests;
   }
   async getRequestsById(systemId: string) {
-    const markers = await this.RequestsModel.findById(systemId).exec();
-    return markers;
+    const request = await this.RequestsModel.findById(systemId).exec();
+    return request;
   }
-  async updateRequests(uid: string, requests: Requests): Promise<Requests> {
+  async updateRequest(uid: string, requests: Requests): Promise<Requests> {
     try {
       console.log('requests: ',requests);
-      const updatedrequests = await this.RequestsModel.findByIdAndUpdate(uid, requests).exec();
-      console.log('updated requests: '+updatedrequests);
-      return updatedrequests;
+      const updatedrequest = await this.RequestsModel.findByIdAndUpdate(uid, requests).exec();
+      console.log('updated requests: '+updatedrequest);
+      return updatedrequest;
     } catch (error) {
       throw new NotFoundException('update marker service error');
     }

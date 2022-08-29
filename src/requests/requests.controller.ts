@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query, } from '@nestjs
 import { RequestsService } from './requests.service';
 import { Requests } from 'src/dto/requests.dto';
 
-@Controller('requests')
+@Controller('request')
 export class RequestsController {
   constructor(private readonly requestsService: RequestsService) { }
 
@@ -12,18 +12,18 @@ export class RequestsController {
   }
   @Get()
   async getAllRequests() {
-    const markerList = await this.requestsService.findAll();
-    return markerList;
+    const requestsList = await this.requestsService.findAll();
+    return requestsList;
   }
   @Get(':id')
   async getRequestsById(@Param('id') id: string) {
-    const markerList = await this.requestsService.getRequestsById(id);
-    return markerList;
+    const request = await this.requestsService.getRequestsById(id);
+    return request;
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body('requests') request: Requests) {
-    return this.requestsService.updateRequests(id, request);
+  async update(@Param('id') id: string, @Body() request: Requests) {
+    return this.requestsService.updateRequest(id, request);
   }
   @Delete(':id')
   async delete(@Param('id') id: string) {
