@@ -30,7 +30,7 @@ export class Marker {
   address: string;
 
   @Prop({ required: true })
-  city: string;
+  city?: string;
 
   @Prop()
   color?:string;

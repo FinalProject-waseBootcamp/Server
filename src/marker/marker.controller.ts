@@ -21,15 +21,15 @@ export class MarkerController {
     return this.markerService.findBySystemId(query.systemId);
   }
   @Get(':id')
-  async findOne(@Param('id') id: mongoose.Schema.Types.ObjectId) {
+  async findOne(@Param('id') id: string) {
     return this.markerService.findOne(id);
   }
   @Put(':id')
-  async update(@Param('id') id: mongoose.Schema.Types.ObjectId, @Body('marker') marker: Marker) {
+  async update(@Param('id') id: string, @Body('marker') marker: Marker) {
     return this.markerService.updateMarker(id, marker);
   }
   @Delete(':id')
-  async delete(@Param('id') id: mongoose.Schema.Types.ObjectId) {
+  async delete(@Param('id') id: string) {
     return this.markerService.delete(id);
   }
 }

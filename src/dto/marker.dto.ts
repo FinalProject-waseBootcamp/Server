@@ -8,7 +8,7 @@ export interface Marker extends mongoose.Document {
     name:string ,
     description:string,
     address:string,
-    city:string,
+    city?:string,
     color?:string,
     notes?: string,
     email?: string,
