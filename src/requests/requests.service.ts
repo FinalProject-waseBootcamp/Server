@@ -1,19 +1,23 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
-import {Requests} from 'src/dto/requests.dto';
+import { Requests } from 'src/dto/requests.dto';
 
 @Injectable()
 export class RequestsService {
   constructor(
-    @InjectModel('Request')
-      private readonly RequestsModel: Model<Requests>,
-      ) {}
+    @InjectModel('Requests')
+    private readonly RequestsModel: Model<Requests>,
+  ) {}
 
   async create(RequestsDto: Requests) {
+    try {
       const createdRequest = await this.RequestsModel.create(RequestsDto);
-      console.log("createdRequest",createdRequest);
+      console.log('createdRequest', createdRequest);
       return createdRequest;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async findAll() {
@@ -26,9 +30,12 @@ export class RequestsService {
   }
   async updateRequest(uid: string, requests: Requests): Promise<Requests> {
     try {
-      console.log('requests: ',requests);
-      const updatedrequest = await this.RequestsModel.findByIdAndUpdate(uid, requests).exec();
-      console.log('updated requests: '+updatedrequest);
+      console.log('requests: ', requests);
+      const updatedrequest = await this.RequestsModel.findByIdAndUpdate(
+        uid,
+        requests,
+      ).exec();
+      console.log('updated requests: ' + updatedrequest);
       return updatedrequest;
     } catch (error) {
       throw new NotFoundException('update request service error');
@@ -36,9 +43,9 @@ export class RequestsService {
   }
 
   async delete(id: string) {
-    const deletedRequests = await this.RequestsModel
-      .findByIdAndRemove({ _id: id })
-      .exec();
+    const deletedRequests = await this.RequestsModel.findByIdAndRemove({
+      _id: id,
+    }).exec();
     return deletedRequests;
   }
 }

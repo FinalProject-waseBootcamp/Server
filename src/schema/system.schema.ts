@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 
-export type UserDocument = System & Document;
+export type SystemDocument = System & Document;
 
 @Schema()
 export class System {

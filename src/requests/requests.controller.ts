@@ -8,7 +8,10 @@ export class RequestsController {
 
   @Post()
   async create(@Body() requestsDto: Requests) {
-    await this.requestsService.create(requestsDto);
+    try{
+      const newRequest=await this.requestsService.create(requestsDto);
+      return newRequest;
+    }catch(err){console.log(err);}
   }
   @Get()
   async getAllRequests() {

@@ -1,15 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 
-export type UserDocument = Requests & Document;
+export type RequestsrDocument = Requests & Document;
 
 @Schema()
 export class Requests {
-  
   constructor() {
     console.log('requests construct');
   }
 
+  @Prop({ required: true })
+  status: string;
+
+  @Prop({ required: true })
+  system_id: string;
 
   @Prop({ required: true })
   firstName: string;
@@ -21,19 +25,27 @@ export class Requests {
   email: string;
 
   @Prop({ required: true })
-  phone: string ;
+  phone: string;
+
+  // @Prop({ required: true })
+  // NotesForManager: string ;
 
   @Prop({ required: true })
-  system_id: mongoose.Schema.Types.ObjectId;
+  display_name: string;
 
   @Prop({ required: true })
-  display_name : string;
+  description: string;
 
-  @Prop({ required: true })
-  status: Status;
+  @Prop()
+  notesForDisplay: string;
 
-  @Prop({ required: true })
-  notes : string;
+  @Prop({ type: Object })
+  markerAddress: {
+    land: string;
+    city: string;
+    street: string;
+    building: string;
+  };
 }
 
 export const RequestsSchema = SchemaFactory.createForClass(Requests);

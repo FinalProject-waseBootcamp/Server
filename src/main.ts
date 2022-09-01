@@ -5,9 +5,9 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
-import { ServiceAccount } from "firebase-admin";
+import { ServiceAccount } from 'firebase-admin';
 import { ConfigModule } from '@nestjs/config';
-ConfigModule.forRoot()
+ConfigModule.forRoot();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,9 +17,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(
     // configService.get<string>('API_PORT') ||
-    3333);
+    3333,
+  );
   logger.log(`Application is running on: ${await app.getUrl()}`);
 }
-bootstrap();  
-
-
+bootstrap();
