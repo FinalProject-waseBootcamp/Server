@@ -1,15 +1,16 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, } from '@nestjs/common';
 import { ManagersService } from 'src/managers/managers.service';
-import { Managers } from 'src/dto/managers.dto';
+import { Manager } from 'src/dto/managers.dto';
 import mongoose from 'mongoose';
 
-@Controller('managers')
+@Controller('manager')
 export class ManagersController {
   constructor(private readonly managersService: ManagersService) { }
 
   @Post()
-  async create(@Body() managersDto: Managers) {
-    await this.managersService.create(managersDto);
+  async create(@Body() managersDto: Manager) {
+    const newManager = await this.managersService.create(managersDto);
+    return newManager;
   }
   @Get()
   async getAllManagers() {
@@ -22,7 +23,7 @@ export class ManagersController {
   }
  
   @Put(':id')
-  async update(@Param('id') id: mongoose.Schema.Types.ObjectId, @Body('manager') manager: Managers) {
+  async update(@Param('id') id: mongoose.Schema.Types.ObjectId, @Body('manager') manager: Manager) {
     return this.managersService.updateManager(id, manager);
   }
   @Delete(':id')

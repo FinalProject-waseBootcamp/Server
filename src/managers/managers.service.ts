@@ -1,16 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
-import {Managers} from 'src/dto/managers.dto';
+import {Manager} from 'src/dto/managers.dto';
 
 @Injectable()
 export class ManagersService {
   constructor(
-    @InjectModel('Managers')
-      private readonly managersModel: Model<Managers>,
+    @InjectModel('Manager')
+      private readonly managersModel: Model<Manager>,
       ) {}
 
-  async create(managersDto: Managers) {
+  async create(managersDto: Manager) {
       const createdManagers = await this.managersModel.create(managersDto);
       console.log("createdManager",createdManagers);
       return createdManagers;
@@ -21,7 +21,7 @@ export class ManagersService {
     return markers;
   }
 
-  async findByIds(system_id:mongoose.Schema.Types.ObjectId,user_id: mongoose.Schema.Types.ObjectId): Promise<Managers[]> {
+  async findByIds(system_id:mongoose.Schema.Types.ObjectId,user_id: mongoose.Schema.Types.ObjectId): Promise<Manager[]> {
     {
       try {
         const manager = await this.managersModel.find({"system_id":system_id,"user_id":user_id}).exec();
@@ -31,7 +31,7 @@ export class ManagersService {
       }
     }
   }
-  async updateManager(uid: mongoose.Schema.Types.ObjectId, manager: Managers): Promise<Managers> {
+  async updateManager(uid: mongoose.Schema.Types.ObjectId, manager: Manager): Promise<Manager> {
     try {
       console.log('manager: ',manager);
       const updatedmanager = await this.managersModel.findByIdAndUpdate(uid, manager).exec();
