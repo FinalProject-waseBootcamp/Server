@@ -20,7 +20,7 @@ describe('MarkerController', () => {
   describe('findAll', () => {
     it('should return an array of cats', async () => {
       const result = ['test'];
-      jest.spyOn(markerService, 'findAll').mockImplementation(() => result);
+      // jest.spyOn(markerService, 'findAll').mockImplementation(() => result);
       expect(await markerController.getAllMarkers()).toBe(result);
     });
   });
