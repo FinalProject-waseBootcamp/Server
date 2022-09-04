@@ -18,7 +18,7 @@ export class ManagersController {
     return markerList;
   }
   @Get(':id')
-  async getManagersBySystemId(@Query() query: { sId: mongoose.Schema.Types.ObjectId ,mId: mongoose.Schema.Types.ObjectId}) {
+  async getManagersBySystemId(@Query() query: { sId: string ,mId: string}) {
     return this.managersService.findByIds(query.sId,query.mId);
   }
  

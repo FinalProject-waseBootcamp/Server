@@ -21,10 +21,10 @@ export class ManagersService {
     return markers;
   }
 
-  async findByIds(system_id:mongoose.Schema.Types.ObjectId,user_id: mongoose.Schema.Types.ObjectId): Promise<Manager[]> {
+  async findByIds(system_id:string,user_id: string): Promise<Manager[]> {
     {
       try {
-        const manager = await this.managersModel.find({"system_id":system_id,"user_id":user_id}).exec();
+        const manager = await this.managersModel.find({systemId: system_id, user_id :user_id}).exec();
          return manager;
       } catch (error) {
         throw new NotFoundException('not found',error);

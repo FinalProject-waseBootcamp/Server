@@ -12,11 +12,11 @@ export class SystemService {
   ) {}
 
   async create(systemDto: System) {
-    if (isAuthenticated && isAuthorized({ hasRole: ['admin', 'manager'] })) {
+    // if (isAuthenticated && isAuthorized({ hasRole: ['admin', 'manager'] })) {
       const createdSystem = await this.systemModel.create(systemDto);
       console.log('created system in service' + createdSystem);
       return createdSystem;
-    }
+    // }
   }
 
   async findByAdminId(id: string) // : Promise<System[]>
