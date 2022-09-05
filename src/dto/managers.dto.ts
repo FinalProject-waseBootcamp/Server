@@ -8,3 +8,4 @@ export interface Manager extends mongoose.Document {
     role: Roles,
     invitation_sent: string;
 }
+
