@@ -15,9 +15,11 @@ async function bootstrap() {
   app.enableCors();
 
   app.useGlobalPipes(new ValidationPipe());
+  const port = parseInt(process.env.PORT) || 3333;
+
   await app.listen(
     // configService.get<string>('API_PORT') ||
-    3333,
+    port,
   );
   logger.log(`Application is running on: ${await app.getUrl()}`);
 }
