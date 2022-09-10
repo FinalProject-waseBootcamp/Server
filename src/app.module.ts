@@ -5,6 +5,8 @@ import { SystemModule } from './system/system.module';
 import { MarkerModule } from './marker/marker.module';
 import { RequestsModule } from './requests/requests.module';
 import { ManagersModule } from './managers/managers.module';
+import { ConfigModule } from '@nestjs/config';
+import path from 'path';
 
 @Module({
   imports: [
